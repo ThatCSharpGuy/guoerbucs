@@ -3,8 +3,40 @@ uti: com.xamarin.workbook
 platforms:
 - Console
 packages:
+- id: System.Text.Encoding.CodePages
+  version: 4.3.0
+- id: System.Security.Cryptography.Algorithms
+  version: 4.3.0
+- id: Newtonsoft.Json
+  version: 9.0.1
+- id: System.IO.FileSystem
+  version: 4.3.0
 - id: Microsoft.Net.Http
   version: 2.2.29
+- id: System.Net.Http
+  version: 4.3.0
+- id: System.Diagnostics.DiagnosticSource
+  version: 4.3.0
+- id: Jirapi
+  version: 1.5.0.39
+- id: System.Security.Cryptography.X509Certificates
+  version: 4.3.0
+- id: Flurl.Http
+  version: 1.0.3
+- id: System.Security.Cryptography.Primitives
+  version: 4.3.0
+- id: Flurl
+  version: 2.2.1
+- id: System.IO.FileSystem.Primitives
+  version: 4.3.0
+- id: System.Globalization
+  version: 4.3.0
+- id: System.Security.Cryptography.Encoding
+  version: 4.3.0
+- id: System.Reflection.TypeExtensions
+  version: 4.3.0
+- id: System.Linq
+  version: 4.3.0
 - id: Microsoft.Bcl
   version: 1.1.10
 ---
@@ -38,7 +70,22 @@ Y luego, instanciarlas:
 
 ### NuGet
 
-Oh, y también puedes insertar paquetes de *NuGet*, para hacerlo, tienes que ir a la barra de menús \*`Archivo`> \*`Agregar paquetes` y listo. Por ejemplo, en este Workbook agregué el paquete de [Jirapi](http://thatcsharpguy.com/post/jirapi/) que tal vez recuerdes, nos ayuda a obtener información de Pokémon.
+Oh, y también puedes insertar paquetes de *NuGet*, para hacerlo, tienes que ir a la barra de menús `Archivo > Agregar paquetes` y listo. Por ejemplo, en este Workbook agregué el paquete de [Jirapi](http://thatcsharpguy.com/post/jirapi/) que tal vez recuerdes, nos ayuda a obtener información de Pokémon.
+
+Una vez agregado el paquete es necesario añadir una especie de directiva de preprocesamiento como si fuera un `using`:
+
+```csharp
+#r "Jirapi"
+using Jirapi;
+using Jirapi.Resources;
+```
+
+A partir de entonces podemos hacer uso de nuestra librería sin problema alguno:
+
+```csharp
+var cliente = new Jirapi.PokeClient();
+var pikachu = await cliente.Get<Pokemon>("pikachu");
+```
 
 ## Usos
 
@@ -56,16 +103,11 @@ Por si mismos, los Workbooks no son más que archivos te texto plano que son int
 uti: com.xamarin.workbook
 platforms:
 - Console
----
+packages:
+- id: System.Text.Encoding.CodePages
+  version: 4.3.0
+- id: System.Security.Cryptography.Algorithms
+  version: 4.3.0
+- id: Newtonsoft.Json
+  version: 9.0.1
 ```
-
-```csharp
-#r "System.Net.Http.Primitives"
-#r "System.Net.Http.Extensions"
-```
-
-```csharp
-#r "System.Net.Http.Primitives"
-#r "System.Net.Http.Extensions"
-```
-
