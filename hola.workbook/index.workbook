@@ -1,0 +1,71 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+packages:
+- id: Microsoft.Net.Http
+  version: 2.2.29
+- id: Microsoft.Bcl
+  version: 1.1.10
+---
+
+# Bienvenido a los Xamarin Workbooks
+
+Con ellos, aprender a programar a .NET cobra un nuevo significado. Mira, por ejemplo, cómo se ve un “Hola mundo“ en ellos:
+
+```csharp
+Console.WriteLine("Hola mundo")
+```
+
+¿Viste cómo no es necesario terminar las sentencias con `;`?
+
+### Declaración de variables
+
+También podemos declarar variables y asignarlas para el documento:
+
+```csharp
+int entero; // declaración
+float flotante = 10f; // Asignación
+decimal x = (decimal)flotante * 3;
+decimal y = x / 6;
+```
+
+### Declaración de clases
+
+Inclusive podemos crear clases completas
+
+Y luego, instanciarlas:
+
+### NuGet
+
+Oh, y también puedes insertar paquetes de *NuGet*, para hacerlo, tienes que ir a la barra de menús \*`Archivo`> \*`Agregar paquetes` y listo. Por ejemplo, en este Workbook agregué el paquete de [Jirapi](http://thatcsharpguy.com/post/jirapi/) que tal vez recuerdes, nos ayuda a obtener información de Pokémon.
+
+## Usos
+
+Seguramente ya estarás pensando en algún uso para esta nueva herramienta. El más claro que yo tengo en mente es el poder los posts de [#AprendeCSharp.](http://thatcsharpguy.com/tag/AprendeCSharp/ "Tag #AprendeCSharp")
+
+```csharp
+// placeholder
+```
+
+### Multiplataforma
+
+Por si mismos, los Workbooks no son más que archivos te texto plano que son interpretados por la aplicación de escritorio. Vamos a revisar precisamente este mismo archivo, estas son las primeras líneas:
+
+```---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+```
+
+```csharp
+#r "System.Net.Http.Primitives"
+#r "System.Net.Http.Extensions"
+```
+
+```csharp
+#r "System.Net.Http.Primitives"
+#r "System.Net.Http.Extensions"
+```
+
