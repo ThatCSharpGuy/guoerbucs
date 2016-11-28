@@ -16,10 +16,8 @@ packages:
 Con ellos, aprender a programar a .NET cobra un nuevo significado. Mira, por ejemplo, cómo se ve un “Hola mundo“ en ellos:
 
 ```csharp
-Console.WriteLine("Hola mundo")
+Console.WriteLine("Hola mundo");
 ```
-
-¿Viste cómo no es necesario terminar las sentencias con `;`?
 
 ### Declaración de variables
 
@@ -36,22 +34,70 @@ decimal y = x / 6;
 
 Inclusive podemos crear clases completas
 
+```csharp
+public class Pokemon
+{
+  public int Id { get; set; }
+  public string Name { get; set; }
+  public int Height { get; set; }
+  public int Weight { get; set; }
+}
+```
+
 Y luego, instanciarlas:
+
+```csharp
+var p1 = new Pokemon();
+p1.Name = "Pikachu";
+```
 
 ### NuGet
 
-Oh, y también puedes insertar paquetes de *NuGet*, para hacerlo, tienes que ir a la barra de menús `Archivo > Agregar paquetes` y listo. Por ejemplo, en este Workbook agregué el paquete de [Jirapi](http://thatcsharpguy.com/post/jirapi/) que tal vez recuerdes, nos ayuda a obtener información de Pokémon.
+Oh, y también puedes insertar paquetes de *NuGet*, para hacerlo, tienes que ir a la barra de menús `Archivo > Agregar paquetes` y listo. Por ejemplo, en este Workbook agregué los paquetes de las librerías HTTP de Microsoft y Newtonsoft.Json para manipular este formato. Vamos a consultar la PokéAPI
 
-Una vez agregado el paquete es necesario añadir una especie de directiva de preprocesamiento como si fuera un `using`:
+Una vez agregado el paquete aparecerán unas directivas para preprocesador que le indican al Wokbook que haremos uso de dichos paquetes:
 
 ```csharp
-// Placeholder
+#r "System.Net.Http.Primitives"
+#r "System.Net.Http.Extensions"
+#r "Newtonsoft.Json"
 ```
 
-A partir de entonces podemos hacer uso de nuestra librería sin problema alguno:
+A partir de entonces podemos hacer uso de estas, ¡pero hey! no olvides los `using`
 
 ```csharp
-// Placeholder
+using Newtonsoft;
+using System.Net.Http;
+using System.Net.Http.Headers;
+```
+
+Ahora sí, vamos a consultar la PokéAPI. Configuramos el cliente:
+
+```csharp
+var client = new HttpClient();
+client.BaseAddress = new Uri("http://pokeapi.co/api/v2/");
+client.DefaultRequestHeaders.Accept.Clear();
+client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+```
+
+Y realizamos las llamadas. ¿por qué no buscas a tu Pokémon favorito modificando la variable `pkmn`? (no olvides presionar ctrl o cmd \+ ↩︎ para ejecutar el código:
+
+```csharp
+var pkmn = "jirachi";
+var response = await client.GetAsync("pokemon/" + pkmn);
+```
+
+¡Oh! lo olvidaba, ¿ves eso que sale debajo de nuestro código cada vez que lo ejecutamos? no es nada más que otra de las maravillas de los Workbooks, que realiza la evaluación de la última expresión y la presenta en pantalla, además de que nos da varias opciones para visualizar la información:
+
+Ahora sí, de vuelta al código:
+
+```csharp
+if(response.IsSuccessStatusCode)
+{ // ... Read the string.
+	    string result = await response.Content.ReadAsStringAsync();
+        var poke = await Newtonsoft.Json.JsonConvert.DeserializeObjectAsync<Pokemon>(result);
+	    Console.WriteLine($"{poke.Id:000} {poke.Name}: H: {poke.Height} and W: {poke.Weight}");
+}
 ```
 
 ## Usos
@@ -64,7 +110,6 @@ Seguramente ya estarás pensando en algún uso para esta nueva herramienta. El m
 
 ### Multiplataforma
 
-Por si mismos, los Workbooks no son más que archivos te texto plano que son interpretados por la aplicación de escritorio. Vamos a revisar precisamente este mismo archivo. Estas son las primeras líneas:
+Por si mismos, los Workbooks no son más que archivos te texto plano (un híbrido entre YAML, Markdown y otra cosa) que son interpretados por la aplicación de escritorio. 
 
-\`
-
+Vamos a revisar precisamente este mismo archivo. Estas son las primeras líneas:
