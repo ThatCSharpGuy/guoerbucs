@@ -128,8 +128,12 @@ Otra cosa que podemos revisar es la forma en la que los bloques de código se es
 
 Lo cierto es que varias veces le tuve que meter las manos al código fuente del archivo para lograr algunas cosas en este archivo, pero vamos, que apenas es la primera versión “estable“ de esta herramienta.
 
+## Instalación
+
+Si ya estás ansioso por descargar y probar los Workbooks puedes dirigirte a [este enlace.](https://developer.xamarin.com/guides/cross-platform/workbooks/install/ "Xamarin Workbooks")
+
 ## Usos
 
-Seguramente ya estarás pensando en algún uso para esta nueva herramienta. El más claro que yo tengo en mente es el poder los posts de [#AprendeCSharp.](http://thatcsharpguy.com/tag/AprendeCSharp/ "Tag #AprendeCSharp"), es más, ¿por qué no comienzas por [descargar este o los que Xamarin preparó para ti?](http://thatcsharpguy.com/tag/AprendeCSharp/ "Descarga este Workbook")
+Seguramente ya estarás pensando en algún uso para esta nueva herramienta. El más claro que yo tengo en mente es el poder los posts de [#AprendeCSharp](http://thatcsharpguy.com/tag/AprendeCSharp/ "Tag #AprendeCSharp"), es más, ¿por qué no comienzas por [descargar este o los que Xamarin preparó para ti?](http://thatcsharpguy.com/tag/AprendeCSharp/ "Descarga este Workbook")
 
 Eso es todo por este post, espero descarguen los Xamarin Workbooks y los usen como una herramienta para aprender.
